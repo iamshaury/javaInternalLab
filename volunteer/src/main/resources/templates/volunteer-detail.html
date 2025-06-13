@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <title>Volunteer Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 60%;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .detail-row {
+            margin: 10px 0;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button a {
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Volunteer Details</h2>
+
+    <div class="detail-row">
+        <span class="label">ID:</span>
+        <span th:text="${volunteer.id}"></span>
+    </div>
+    <div class="detail-row">
+        <span class="label">Name:</span>
+        <span th:text="${volunteer.name}"></span>
+    </div>
+    <div class="detail-row">
+        <span class="label">Email:</span>
+        <span th:text="${volunteer.email}"></span>
+    </div>
+  
+    <div class="detail-row">
+        <span class="label">Available:</span>
+        <span th:text="${volunteer.availability} ? 'Yes' : 'No'"></span>
+    </div>
+
+    <div class="button">
+        <a th:href="@{'/volunteer/edit/' + ${volunteer.id}}">Edit</a>
+        <a th:href="@{/volunteer/all}">Back to List</a>
+    </div>
+</div>
+</body>
+</html>

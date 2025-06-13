@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Volunteers</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    h2 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: bold;
+    }
+
+
+    .btn-add {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+    }
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #2980b9;
+      color: white;
+    }
+
+
+    .action-links a {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    .action-links a:first-child {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    .action-links a:last-child {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+
+  </style>
+</head>
+<body>
+<h2>All Volunteers</h2>
+<a class="btn-add" href="/volunteer/new">+ Add New Volunteer</a>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Available</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="volunteer : ${volunteers}">
+    <td th:text="${volunteer.id}"></td>
+    <td th:text="${volunteer.name}"></td>
+    <td th:text="${volunteer.email}"></td>
+    <td th:text="${volunteer.availability} ? 'Yes' : 'No'"></td>
+    <td class="action-links">
+      <a th:href="@{'/volunteer/edit/' + ${volunteer.id}}">Edit</a>
+      <a th:href="@{'/volunteer/delete/' + ${volunteer.id}}">Delete</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
